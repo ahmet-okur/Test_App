@@ -1,0 +1,57 @@
+﻿@model Apartment
+
+@* THIS IS A COMMENT LINE. *@
+
+@using Microsoft.AspNetCore.Identity;
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+<h3 class="my-5">
+    @Model.Name
+    
+</h3>
+
+
+<div class="row gx-5">
+
+  
+      @*A 12-grid system is used to position the image and the div (div with class col-7 and col-5).*@ 
+      <div class="col-5">
+        @*we are calling the partial view _Carousel.cshtml*@
+        <partial name="_Carousel" />
+      </div>
+
+    <div class="col-7">
+      @*If user is a registered user, he gets want to rent button on the details page*@
+      @*But If the user is an admin or someone who is not logged in, this button will not appear. *@
+        @if (User.IsInRole("User"))
+        {
+        @*Want to rent button redirect user to Rent Apartment page*@
+        <a type="button" class="btn btn-primary btn-lg" 
+        asp-controller="Apartment" 
+        asp-action="RentApartment" 
+        asp-route-id="@Model.Id">Want To Rent</a>
+
+        
+        }
+
+        @*Attributes such as Description, Price, Number Of Rooms, Square, First Rental Date is added to the detail page *@
+        @*Description:A short introductory text about the house*@
+        <p>@Model.Description</p>
+        @*Price:One-day price of the rental house*@
+        <h3 class="pull-right">@Model.Price.ToString("0.00 NOK")</h3>
+        @*NumOfRooms: Number of bedrooms in the house*@
+        <p class="card-text"><i class="fa fa-bed" aria-hidden="true"></i> @Model.NumOfRooms  </p>
+        @*Square: The size of the house in square meters*@
+        <p class="card-text"><i class="fa-solid fa-ruler" aria-hidden="true"></i> @Model.Square  </p>
+        @*First rental date:It indicates the first date that the house will be available*@
+        <p class="card-text text-start"><i class="fa fa-calendar" aria-hidden="true"></i>@Model.FirstRentalDate  </p>
+
+
+
+    </div>
+</div>
+
+  

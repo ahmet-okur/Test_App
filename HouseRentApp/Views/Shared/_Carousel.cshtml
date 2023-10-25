@@ -1,0 +1,56 @@
+﻿@model Apartment
+@*USED SOURCE:https://coreui.io/docs/3.4/components/bootstrap/carousel/ *@
+
+<div id="carouselFade" class="carousel slide carousel-fade w-100" data-ride="carousel">
+
+    <div class="carousel-inner">
+        <div class="carousel-item">
+            <img class="d-block w-100" src="@Model.ImageUrl1" width="800" height="400" alt="First slide" />
+        </div>
+        <div class="carousel-item active">
+            @*If the user does not add image number 2, the placeholder will be displayed*@
+            @if (Model.ImageUrl2 == null)
+            {
+                //Used source for svg class: https://coreui.io/docs/3.4/components/bootstrap/carousel/
+                <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: No image added" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#666" /><text x="50%" y="50%" fill="#444" dy=".3em">Image 2 not added</text></svg>
+            }
+            else
+            {
+                <img class="d-block w-100" src="@Model.ImageUrl2" width="800" height="400" alt="Second slide" />
+            }
+    </div>
+        <div class="carousel-item">
+            @*If the user does not add image number 2, the placeholder will be displayed*@
+            @if(Model.ImageUrl3 == null){
+                //Used source for svg class: https://coreui.io/docs/3.4/components/bootstrap/carousel/
+                <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: No image added" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#666" /><text x="50%" y="50%" fill="#444" dy=".3em">Image 3 not added</text></svg>
+            }
+            else{
+                <img class="d-block w-100" src="@Model.ImageUrl3" width="800" height="400" alt="Third slide" />
+            }
+    </div>
+        <div class="carousel-item">
+            @*If the user does not add image number 4, the placeholder will be displayed*@
+            @if (Model.ImageUrl4 == null)
+            {
+                //Used source for svg class: https://coreui.io/docs/3.4/components/bootstrap/carousel/
+                <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: No image added" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#666" /><text x="50%" y="50%" fill="#444" dy=".3em">Image 4 not added</text></svg>
+            }
+            else
+            {
+                <img class="d-block w-100" src="@Model.ImageUrl4" width="800" height="400" alt="Fourth slide" />
+            }
+        </div>
+    </div>
+    @*the images is changed interactively by clicking on the arrows on the right and left of the images.*@
+    @*prev icon:*@
+    <a class="carousel-control-prev" href="#carouselFade" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </a>
+    @*next icon:*@
+    <a class="carousel-control-next" href="#carouselFade" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </a>
+</div>

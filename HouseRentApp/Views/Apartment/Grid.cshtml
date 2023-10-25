@@ -1,0 +1,136 @@
+﻿@model IEnumerable<HouseRentApp.Models.Apartment>
+@using Microsoft.AspNetCore.Identity;
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+@if (User.IsInRole("Admin"))
+{
+    <h1>RENT OUT YOUR HOME!</h1>
+    <h2>Hi Admin</h2>
+   
+    <a asp-action="Create" class="btn btn-secondary">Create</a>
+    <br />
+    <br />
+
+    <h3>Houses published by you:</h3>
+    <hr />
+    //used source/we get inspiration from: https://getbootstrap.com/docs/5.3/examples/album/
+    <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+
+            <div class="row">
+                @foreach (var apartment in Model)
+                {
+                   
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" src="@apartment.ImageUrl1" alt="@apartment.Name">
+
+                            <div class="card-body">
+                                <p class="text-end fw-light">@apartment.Adress</p>
+
+                                <h5 class="card-title">@apartment.Name</h5>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <strong> @apartment.Square </strong>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <strong> @apartment.Price NOK </strong>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 ">
+                                        <p class="card-text"><i class="fa fa-bed" aria-hidden="true"></i> @apartment.NumOfRooms  </p>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="col-md-9 ">
+                                        <p class="card-text text-start"><i class="fa fa-calendar" aria-hidden="true"></i>@apartment.FirstRentalDate  </p>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <a type="button" asp-controller="Apartment" asp-action="Details" asp-route-id="@apartment.Id" class=" btn btn-primary">View</a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a type="button" asp-controller="Apartment" asp-action="Update" asp-route-id="@apartment.Id" class="btn btn-secondary">Update</a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a type="button" asp-controller="Apartment" asp-action="Delete" asp-route-id="@apartment.Id" class="btn btn-danger">Delete</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+
+
+}
+else
+{
+
+
+
+    <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+
+            <div class="row">
+                @foreach (var apartment in Model)
+                {
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" src="@apartment.ImageUrl1" alt="@apartment.Name">
+
+                            <div class="card-body">
+                                <p class="text-end fw-light">@apartment.Adress</p>
+
+                                <h5 class="card-title">@apartment.Name</h5>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <strong> @apartment.Square </strong>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <strong> @apartment.Price NOK </strong>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 ">
+                                        <p class="card-text"><i class="fa fa-bed" aria-hidden="true"></i> @apartment.NumOfRooms  </p>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="col-md-9 ">
+                                        <p class="card-text text-start"><i class="fa fa-calendar" aria-hidden="true"></i>@apartment.FirstRentalDate  </p>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="d-grid gap-2">
+                                    <a type="button" class="btn btn-primary btn-lg" asp-controller="Apartment" asp-action="Details" asp-route-id="@apartment.Id">View</a>
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
